@@ -1,0 +1,6 @@
+
+State Machine - |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|state
+Name state.S_FETCH state.S_VBLANK state.S_EXEC 
+state.S_FETCH 0 0 0 
+state.S_EXEC 1 0 1 
+state.S_VBLANK 1 1 0 

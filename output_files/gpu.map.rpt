@@ -1,0 +1,1147 @@
+Analysis & Synthesis report for gpu
+Wed Oct 14 09:32:17 2026
+Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|state
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Registers Packed Into Inferred Megafunctions
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for color_palette:u_palette|altsyncram:clut_ram_rtl_0|altsyncram_5ad1:auto_generated
+ 17. Source assignments for pattern_vram:u_patterns|altsyncram:ram_rtl_0|altsyncram_pa12:auto_generated
+ 18. Source assignments for fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0|altsyncram_iuf1:auto_generated
+ 19. Parameter Settings for User Entity Instance: fetch_control_unit:u_fetch_unit|instruction_memory:u_rom
+ 20. Parameter Settings for Inferred Entity Instance: color_palette:u_palette|altsyncram:clut_ram_rtl_0
+ 21. Parameter Settings for Inferred Entity Instance: pattern_vram:u_patterns|altsyncram:ram_rtl_0
+ 22. Parameter Settings for Inferred Entity Instance: fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0
+ 23. altsyncram Parameter Settings by Entity Instance
+ 24. Port Connectivity Checks: "pattern_vram:u_patterns"
+ 25. Port Connectivity Checks: "fetch_control_unit:u_fetch_unit"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++---------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Wed Oct 14 09:32:17 2026           ;
+; Quartus Prime Version           ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
+; Revision Name                   ; gpu                                             ;
+; Top-level Entity Name           ; gpu_de1_soc_top                                 ;
+; Family                          ; Cyclone V                                       ;
+; Logic utilization (in ALMs)     ; N/A                                             ;
+; Total registers                 ; 10539                                           ;
+; Total pins                      ; 41                                              ;
+; Total virtual pins              ; 0                                               ;
+; Total block memory bits         ; 202,752                                         ;
+; Total DSP Blocks                ; 0                                               ;
+; Total HSSI RX PCSs              ; 0                                               ;
+; Total HSSI PMA RX Deserializers ; 0                                               ;
+; Total HSSI TX PCSs              ; 0                                               ;
+; Total HSSI PMA TX Serializers   ; 0                                               ;
+; Total PLLs                      ; 0                                               ;
+; Total DLLs                      ; 0                                               ;
++---------------------------------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; gpu_de1_soc_top    ; gpu                ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 14          ;
+;                            ;             ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 14          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
+;     Processor 9            ;   0.1%      ;
+;     Processor 10           ;   0.1%      ;
+;     Processor 11           ;   0.0%      ;
+;     Processors 12-14       ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                 ;
++-------------------------------------------------+-----------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                                                     ; Library ;
++-------------------------------------------------+-----------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+; gpu_de1_soc_top.v                               ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v                               ;         ;
+; cmd_decoder.v                                   ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v                                   ;         ;
+; color_palette.v                                 ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/color_palette.v                                 ;         ;
+; compositor.v                                    ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/compositor.v                                    ;         ;
+; bg_engine.v                                     ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/bg_engine.v                                     ;         ;
+; tilemap_ram.v                                   ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/tilemap_ram.v                                   ;         ;
+; pattern_vram.v                                  ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/pattern_vram.v                                  ;         ;
+; vga_sync.v                                      ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/vga_sync.v                                      ;         ;
+; tilemap_data.hex                                ; yes             ; User Hexadecimal (Intel-Format) File                  ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/tilemap_data.hex                                ;         ;
+; sprite_engine.v                                 ; yes             ; User Verilog HDL File                                 ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/sprite_engine.v                                 ;         ;
+; tiles.hex                                       ; yes             ; Auto-Found Hexadecimal (Intel-Format) File            ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/tiles.hex                                       ;         ;
+; fetch_control_unit.v                            ; yes             ; Auto-Found Verilog HDL File                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/fetch_control_unit.v                            ;         ;
+; instruction_memory.v                            ; yes             ; Auto-Found Verilog HDL File                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/instruction_memory.v                            ;         ;
+; program.hex                                     ; yes             ; Auto-Found Hexadecimal (Intel-Format) File            ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/program.hex                                     ;         ;
+; altsyncram.tdf                                  ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/altsyncram.tdf                                          ;         ;
+; stratix_ram_block.inc                           ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                   ;         ;
+; lpm_mux.inc                                     ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/lpm_mux.inc                                             ;         ;
+; lpm_decode.inc                                  ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/lpm_decode.inc                                          ;         ;
+; aglobal251.inc                                  ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/aglobal251.inc                                          ;         ;
+; a_rdenreg.inc                                   ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/a_rdenreg.inc                                           ;         ;
+; altrom.inc                                      ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/altrom.inc                                              ;         ;
+; altram.inc                                      ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/altram.inc                                              ;         ;
+; altdpram.inc                                    ; yes             ; Megafunction                                          ; /opt/intelFPGA_lite/25.1/quartus/libraries/megafunctions/altdpram.inc                                            ;         ;
+; db/altsyncram_5ad1.tdf                          ; yes             ; Auto-Generated Megafunction                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/altsyncram_5ad1.tdf                          ;         ;
+; db/gpu.ram0_color_palette_5080005f.hdl.mif      ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/gpu.ram0_color_palette_5080005f.hdl.mif      ;         ;
+; db/altsyncram_pa12.tdf                          ; yes             ; Auto-Generated Megafunction                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/altsyncram_pa12.tdf                          ;         ;
+; db/gpu.ram0_pattern_vram_cc9d1d0f.hdl.mif       ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/gpu.ram0_pattern_vram_cc9d1d0f.hdl.mif       ;         ;
+; db/decode_5la.tdf                               ; yes             ; Auto-Generated Megafunction                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/decode_5la.tdf                               ;         ;
+; db/decode_u0a.tdf                               ; yes             ; Auto-Generated Megafunction                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/decode_u0a.tdf                               ;         ;
+; db/mux_lfb.tdf                                  ; yes             ; Auto-Generated Megafunction                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/mux_lfb.tdf                                  ;         ;
+; db/altsyncram_iuf1.tdf                          ; yes             ; Auto-Generated Megafunction                           ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/altsyncram_iuf1.tdf                          ;         ;
+; db/gpu.ram0_instruction_memory_a86884b4.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/gpu.ram0_instruction_memory_a86884b4.hdl.mif ;         ;
++-------------------------------------------------+-----------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimate of Logic utilization (ALMs needed) ; 7604           ;
+;                                             ;                ;
+; Combinational ALUT usage for logic          ; 10004          ;
+;     -- 7 input functions                    ; 34             ;
+;     -- 6 input functions                    ; 3681           ;
+;     -- 5 input functions                    ; 337            ;
+;     -- 4 input functions                    ; 170            ;
+;     -- <=3 input functions                  ; 5782           ;
+;                                             ;                ;
+; Dedicated logic registers                   ; 10539          ;
+;                                             ;                ;
+; I/O pins                                    ; 41             ;
+; Total MLAB memory bits                      ; 0              ;
+; Total block memory bits                     ; 202752         ;
+;                                             ;                ;
+; Total DSP Blocks                            ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 10589          ;
+; Total fan-out                               ; 66171          ;
+; Average fan-out                             ; 3.20           ;
++---------------------------------------------+----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                          ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                              ; Entity Name        ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+; |gpu_de1_soc_top                             ; 10004 (25)          ; 10539 (1)                 ; 202752            ; 0          ; 41   ; 0            ; |gpu_de1_soc_top                                                                                                                 ; gpu_de1_soc_top    ; work         ;
+;    |bg_engine:u_bg_engine|                   ; 8634 (24)           ; 9614 (6)                  ; 0                 ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|bg_engine:u_bg_engine                                                                                           ; bg_engine          ; work         ;
+;       |tilemap_ram:u_map_buffer|             ; 8610 (8610)         ; 9608 (9608)               ; 0                 ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|bg_engine:u_bg_engine|tilemap_ram:u_map_buffer                                                                  ; tilemap_ram        ; work         ;
+;    |cmd_decoder:u_cmd_decoder|               ; 15 (15)             ; 67 (67)                   ; 0                 ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|cmd_decoder:u_cmd_decoder                                                                                       ; cmd_decoder        ; work         ;
+;    |color_palette:u_palette|                 ; 0 (0)               ; 0 (0)                     ; 6144              ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|color_palette:u_palette                                                                                         ; color_palette      ; work         ;
+;       |altsyncram:clut_ram_rtl_0|            ; 0 (0)               ; 0 (0)                     ; 6144              ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|color_palette:u_palette|altsyncram:clut_ram_rtl_0                                                               ; altsyncram         ; work         ;
+;          |altsyncram_5ad1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 6144              ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|color_palette:u_palette|altsyncram:clut_ram_rtl_0|altsyncram_5ad1:auto_generated                                ; altsyncram_5ad1    ; work         ;
+;    |compositor:u_compositor|                 ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|compositor:u_compositor                                                                                         ; compositor         ; work         ;
+;    |fetch_control_unit:u_fetch_unit|         ; 17 (17)             ; 48 (48)                   ; 65536             ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit                                                                                 ; fetch_control_unit ; work         ;
+;       |instruction_memory:u_rom|             ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|instruction_memory:u_rom                                                        ; instruction_memory ; work         ;
+;          |altsyncram:memory_rtl_0|           ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0                                ; altsyncram         ; work         ;
+;             |altsyncram_iuf1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0|altsyncram_iuf1:auto_generated ; altsyncram_iuf1    ; work         ;
+;    |pattern_vram:u_patterns|                 ; 0 (0)               ; 1 (0)                     ; 131072            ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|pattern_vram:u_patterns                                                                                         ; pattern_vram       ; work         ;
+;       |altsyncram:ram_rtl_0|                 ; 0 (0)               ; 1 (0)                     ; 131072            ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|pattern_vram:u_patterns|altsyncram:ram_rtl_0                                                                    ; altsyncram         ; work         ;
+;          |altsyncram_pa12:auto_generated|    ; 0 (0)               ; 1 (1)                     ; 131072            ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|pattern_vram:u_patterns|altsyncram:ram_rtl_0|altsyncram_pa12:auto_generated                                     ; altsyncram_pa12    ; work         ;
+;    |sprite_engine:u_sprite_engine|           ; 1255 (1255)         ; 786 (786)                 ; 0                 ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|sprite_engine:u_sprite_engine                                                                                   ; sprite_engine      ; work         ;
+;    |vga_sync:u_vga_sync|                     ; 48 (48)             ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |gpu_de1_soc_top|vga_sync:u_vga_sync                                                                                             ; vga_sync           ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                                ;
++----------------------------------------------------------------------------------------------------------------------------+------------+----------------+--------------+--------------+--------------+--------------+--------+-------------------------------------------------+
+; Name                                                                                                                       ; Type       ; Mode           ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF                                             ;
++----------------------------------------------------------------------------------------------------------------------------+------------+----------------+--------------+--------------+--------------+--------------+--------+-------------------------------------------------+
+; color_palette:u_palette|altsyncram:clut_ram_rtl_0|altsyncram_5ad1:auto_generated|ALTSYNCRAM                                ; AUTO       ; ROM            ; 256          ; 24           ; --           ; --           ; 6144   ; db/gpu.ram0_color_palette_5080005f.hdl.mif      ;
+; fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0|altsyncram_iuf1:auto_generated|ALTSYNCRAM ; M10K block ; ROM            ; 2048         ; 32           ; --           ; --           ; 65536  ; db/gpu.ram0_instruction_memory_a86884b4.hdl.mif ;
+; pattern_vram:u_patterns|altsyncram:ram_rtl_0|altsyncram_pa12:auto_generated|ALTSYNCRAM                                     ; M10K block ; True Dual Port ; 16384        ; 8            ; 16384        ; 8            ; 131072 ; db/gpu.ram0_pattern_vram_cc9d1d0f.hdl.mif       ;
++----------------------------------------------------------------------------------------------------------------------------+------------+----------------+--------------+--------------+--------------+--------------+--------+-------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------+
+; State Machine - |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|state ;
++----------------+---------------+----------------+----------------------+
+; Name           ; state.S_FETCH ; state.S_VBLANK ; state.S_EXEC         ;
++----------------+---------------+----------------+----------------------+
+; state.S_FETCH  ; 0             ; 0              ; 0                    ;
+; state.S_EXEC   ; 1             ; 0              ; 1                    ;
+; state.S_VBLANK ; 1             ; 1              ; 0                    ;
++----------------+---------------+----------------+----------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                    ;
++----------------------------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                                                ; Reason for Removal                     ;
++----------------------------------------------------------------------------------------------+----------------------------------------+
+; cmd_decoder:u_cmd_decoder|pal_we                                                             ; Stuck at GND due to stuck port data_in ;
+; cmd_decoder:u_cmd_decoder|sat_data[6,7,29,30]                                                ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[0][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[0][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[0][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[0][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[1][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[1][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[1][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[1][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[2][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[2][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[2][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[2][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[3][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[3][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[3][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[3][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[4][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[4][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[4][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[4][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[5][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[5][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[5][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[5][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[6][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[6][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[6][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[6][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[7][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[7][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[7][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[7][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[8][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[8][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[8][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[8][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[9][30]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[9][29]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[9][7]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[9][6]                                                      ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[10][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[10][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[10][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[10][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[11][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[11][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[11][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[11][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[12][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[12][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[12][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[12][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[13][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[13][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[13][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[13][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[14][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[14][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[14][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[14][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[15][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[15][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[15][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[15][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[16][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[16][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[16][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[16][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[17][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[17][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[17][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[17][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[18][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[18][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[18][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[18][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[19][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[19][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[19][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[19][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[20][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[20][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[20][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[20][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[21][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[21][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[21][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[21][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[22][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[22][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[22][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[22][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[23][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[23][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[23][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[23][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[24][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[24][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[24][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[24][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[25][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[25][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[25][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[25][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[26][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[26][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[26][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[26][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[27][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[27][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[27][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[27][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[28][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[28][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[28][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[28][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[29][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[29][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[29][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[29][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[30][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[30][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[30][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[30][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[31][30]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[31][29]                                                    ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[31][7]                                                     ; Stuck at GND due to stuck port data_in ;
+; sprite_engine:u_sprite_engine|oam[31][6]                                                     ; Stuck at GND due to stuck port data_in ;
+; pattern_vram:u_patterns|altsyncram:ram_rtl_0|altsyncram_pa12:auto_generated|address_reg_b[0] ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 134                                                      ;                                        ;
++----------------------------------------------------------------------------------------------+----------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                              ;
++----------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; Register name                          ; Reason for Removal        ; Registers Removed due to This Register                                              ;
++----------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; cmd_decoder:u_cmd_decoder|sat_data[30] ; Stuck at GND              ; sprite_engine:u_sprite_engine|oam[0][30], sprite_engine:u_sprite_engine|oam[1][30], ;
+;                                        ; due to stuck port data_in ; sprite_engine:u_sprite_engine|oam[2][30], sprite_engine:u_sprite_engine|oam[3][30], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[4][30], sprite_engine:u_sprite_engine|oam[5][30], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[6][30], sprite_engine:u_sprite_engine|oam[7][30], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[8][30], sprite_engine:u_sprite_engine|oam[9][30], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[10][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[11][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[12][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[13][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[14][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[15][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[16][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[17][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[18][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[19][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[20][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[21][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[22][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[23][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[24][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[25][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[26][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[27][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[28][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[29][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[30][30],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[31][30]                                           ;
+; cmd_decoder:u_cmd_decoder|sat_data[29] ; Stuck at GND              ; sprite_engine:u_sprite_engine|oam[0][29], sprite_engine:u_sprite_engine|oam[1][29], ;
+;                                        ; due to stuck port data_in ; sprite_engine:u_sprite_engine|oam[2][29], sprite_engine:u_sprite_engine|oam[3][29], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[4][29], sprite_engine:u_sprite_engine|oam[5][29], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[6][29], sprite_engine:u_sprite_engine|oam[7][29], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[8][29], sprite_engine:u_sprite_engine|oam[9][29], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[10][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[11][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[12][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[13][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[14][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[15][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[16][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[17][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[18][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[19][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[20][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[21][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[22][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[23][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[24][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[25][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[26][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[27][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[28][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[29][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[30][29],                                          ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[31][29]                                           ;
+; cmd_decoder:u_cmd_decoder|sat_data[7]  ; Stuck at GND              ; sprite_engine:u_sprite_engine|oam[0][7], sprite_engine:u_sprite_engine|oam[1][7],   ;
+;                                        ; due to stuck port data_in ; sprite_engine:u_sprite_engine|oam[2][7], sprite_engine:u_sprite_engine|oam[3][7],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[4][7], sprite_engine:u_sprite_engine|oam[5][7],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[6][7], sprite_engine:u_sprite_engine|oam[7][7],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[8][7], sprite_engine:u_sprite_engine|oam[9][7],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[10][7], sprite_engine:u_sprite_engine|oam[11][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[12][7], sprite_engine:u_sprite_engine|oam[13][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[14][7], sprite_engine:u_sprite_engine|oam[15][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[16][7], sprite_engine:u_sprite_engine|oam[17][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[18][7], sprite_engine:u_sprite_engine|oam[19][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[20][7], sprite_engine:u_sprite_engine|oam[21][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[22][7], sprite_engine:u_sprite_engine|oam[23][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[24][7], sprite_engine:u_sprite_engine|oam[25][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[26][7], sprite_engine:u_sprite_engine|oam[27][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[28][7], sprite_engine:u_sprite_engine|oam[29][7], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[30][7], sprite_engine:u_sprite_engine|oam[31][7]  ;
+; cmd_decoder:u_cmd_decoder|sat_data[6]  ; Stuck at GND              ; sprite_engine:u_sprite_engine|oam[0][6], sprite_engine:u_sprite_engine|oam[1][6],   ;
+;                                        ; due to stuck port data_in ; sprite_engine:u_sprite_engine|oam[2][6], sprite_engine:u_sprite_engine|oam[3][6],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[4][6], sprite_engine:u_sprite_engine|oam[5][6],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[6][6], sprite_engine:u_sprite_engine|oam[7][6],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[8][6], sprite_engine:u_sprite_engine|oam[9][6],   ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[10][6], sprite_engine:u_sprite_engine|oam[11][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[12][6], sprite_engine:u_sprite_engine|oam[13][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[14][6], sprite_engine:u_sprite_engine|oam[15][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[16][6], sprite_engine:u_sprite_engine|oam[17][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[18][6], sprite_engine:u_sprite_engine|oam[19][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[20][6], sprite_engine:u_sprite_engine|oam[21][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[22][6], sprite_engine:u_sprite_engine|oam[23][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[24][6], sprite_engine:u_sprite_engine|oam[25][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[26][6], sprite_engine:u_sprite_engine|oam[27][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[28][6], sprite_engine:u_sprite_engine|oam[29][6], ;
+;                                        ;                           ; sprite_engine:u_sprite_engine|oam[30][6], sprite_engine:u_sprite_engine|oam[31][6]  ;
++----------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 10539 ;
+; Number of registers using Synchronous Clear  ; 37    ;
+; Number of registers using Synchronous Load   ; 20    ;
+; Number of registers using Asynchronous Clear ; 924   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 10486 ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; vga_sync:u_vga_sync|hsync               ; 1       ;
+; vga_sync:u_vga_sync|vsync               ; 4       ;
+; fetch_control_unit:u_fetch_unit|vsync_d ; 2       ;
+; Total number of inverted registers = 3  ;         ;
++-----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                               ;
++-----------------------------------------------------------------------------+-----------------------------------------------------------------------+------+
+; Register Name                                                               ; Megafunction                                                          ; Type ;
++-----------------------------------------------------------------------------+-----------------------------------------------------------------------+------+
+; color_palette:u_palette|rgb_out[0..23]                                      ; color_palette:u_palette|clut_ram_rtl_0                                ; RAM  ;
+; pattern_vram:u_patterns|data_out_a[0..7]                                    ; pattern_vram:u_patterns|ram_rtl_0                                     ; RAM  ;
+; pattern_vram:u_patterns|data_out_b[0..7]                                    ; pattern_vram:u_patterns|ram_rtl_0                                     ; RAM  ;
+; fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|instruction[0..31] ; fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|memory_rtl_0 ; RAM  ;
++-----------------------------------------------------------------------------+-----------------------------------------------------------------------+------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+; 17:1               ; 9 bits    ; 99 LEs        ; 0 LEs                ; 99 LEs                 ; Yes        ; |gpu_de1_soc_top|cmd_decoder:u_cmd_decoder|scroll_x[7]          ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 0 LEs                ; 44 LEs                 ; Yes        ; |gpu_de1_soc_top|fetch_control_unit:u_fetch_unit|pc[10]         ;
+; 17:1               ; 7 bits    ; 77 LEs        ; 7 LEs                ; 70 LEs                 ; No         ; |gpu_de1_soc_top|sprite_engine:u_sprite_engine|sp_vram_addr[11] ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |gpu_de1_soc_top|sprite_engine:u_sprite_engine|Add4             ;
+; 33:1               ; 6 bits    ; 132 LEs       ; 132 LEs              ; 0 LEs                  ; No         ; |gpu_de1_soc_top|sprite_engine:u_sprite_engine|sp_vram_addr[5]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; Source assignments for color_palette:u_palette|altsyncram:clut_ram_rtl_0|altsyncram_5ad1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                        ;
++---------------------------------+--------------------+------+-------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                         ;
++---------------------------------+--------------------+------+-------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Source assignments for pattern_vram:u_patterns|altsyncram:ram_rtl_0|altsyncram_pa12:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------+
+; Assignment                      ; Value              ; From ; To                                   ;
++---------------------------------+--------------------+------+--------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                    ;
++---------------------------------+--------------------+------+--------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0|altsyncram_iuf1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                       ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                        ;
++---------------------------------+--------------------+------+--------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fetch_control_unit:u_fetch_unit|instruction_memory:u_rom ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; ADDRESS_WIDTH  ; 11    ; Signed Integer                                                               ;
+; PROGRAM_WORDS  ; 2048  ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: color_palette:u_palette|altsyncram:clut_ram_rtl_0 ;
++------------------------------------+--------------------------------------------+------------------+
+; Parameter Name                     ; Value                                      ; Type             ;
++------------------------------------+--------------------------------------------+------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                          ; Untyped          ;
+; AUTO_CARRY_CHAINS                  ; ON                                         ; AUTO_CARRY       ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                        ; IGNORE_CARRY     ;
+; AUTO_CASCADE_CHAINS                ; ON                                         ; AUTO_CASCADE     ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                        ; IGNORE_CASCADE   ;
+; WIDTH_BYTEENA                      ; 1                                          ; Untyped          ;
+; OPERATION_MODE                     ; ROM                                        ; Untyped          ;
+; WIDTH_A                            ; 24                                         ; Untyped          ;
+; WIDTHAD_A                          ; 8                                          ; Untyped          ;
+; NUMWORDS_A                         ; 256                                        ; Untyped          ;
+; OUTDATA_REG_A                      ; UNREGISTERED                               ; Untyped          ;
+; ADDRESS_ACLR_A                     ; NONE                                       ; Untyped          ;
+; OUTDATA_ACLR_A                     ; NONE                                       ; Untyped          ;
+; WRCONTROL_ACLR_A                   ; NONE                                       ; Untyped          ;
+; INDATA_ACLR_A                      ; NONE                                       ; Untyped          ;
+; BYTEENA_ACLR_A                     ; NONE                                       ; Untyped          ;
+; WIDTH_B                            ; 1                                          ; Untyped          ;
+; WIDTHAD_B                          ; 1                                          ; Untyped          ;
+; NUMWORDS_B                         ; 1                                          ; Untyped          ;
+; INDATA_REG_B                       ; CLOCK1                                     ; Untyped          ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                     ; Untyped          ;
+; RDCONTROL_REG_B                    ; CLOCK1                                     ; Untyped          ;
+; ADDRESS_REG_B                      ; CLOCK1                                     ; Untyped          ;
+; OUTDATA_REG_B                      ; UNREGISTERED                               ; Untyped          ;
+; BYTEENA_REG_B                      ; CLOCK1                                     ; Untyped          ;
+; INDATA_ACLR_B                      ; NONE                                       ; Untyped          ;
+; WRCONTROL_ACLR_B                   ; NONE                                       ; Untyped          ;
+; ADDRESS_ACLR_B                     ; NONE                                       ; Untyped          ;
+; OUTDATA_ACLR_B                     ; NONE                                       ; Untyped          ;
+; RDCONTROL_ACLR_B                   ; NONE                                       ; Untyped          ;
+; BYTEENA_ACLR_B                     ; NONE                                       ; Untyped          ;
+; WIDTH_BYTEENA_A                    ; 1                                          ; Untyped          ;
+; WIDTH_BYTEENA_B                    ; 1                                          ; Untyped          ;
+; RAM_BLOCK_TYPE                     ; AUTO                                       ; Untyped          ;
+; BYTE_SIZE                          ; 8                                          ; Untyped          ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                  ; Untyped          ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                       ; Untyped          ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                       ; Untyped          ;
+; INIT_FILE                          ; db/gpu.ram0_color_palette_5080005f.hdl.mif ; Untyped          ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                     ; Untyped          ;
+; MAXIMUM_DEPTH                      ; 0                                          ; Untyped          ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                     ; Untyped          ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                     ; Untyped          ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                     ; Untyped          ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                     ; Untyped          ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                            ; Untyped          ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                            ; Untyped          ;
+; ENABLE_ECC                         ; FALSE                                      ; Untyped          ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                      ; Untyped          ;
+; WIDTH_ECCSTATUS                    ; 3                                          ; Untyped          ;
+; DEVICE_FAMILY                      ; Cyclone V                                  ; Untyped          ;
+; CBXI_PARAMETER                     ; altsyncram_5ad1                            ; Untyped          ;
++------------------------------------+--------------------------------------------+------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: pattern_vram:u_patterns|altsyncram:ram_rtl_0   ;
++------------------------------------+-------------------------------------------+----------------+
+; Parameter Name                     ; Value                                     ; Type           ;
++------------------------------------+-------------------------------------------+----------------+
+; BYTE_SIZE_BLOCK                    ; 8                                         ; Untyped        ;
+; AUTO_CARRY_CHAINS                  ; ON                                        ; AUTO_CARRY     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                       ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                ; ON                                        ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                       ; IGNORE_CASCADE ;
+; WIDTH_BYTEENA                      ; 1                                         ; Untyped        ;
+; OPERATION_MODE                     ; BIDIR_DUAL_PORT                           ; Untyped        ;
+; WIDTH_A                            ; 8                                         ; Untyped        ;
+; WIDTHAD_A                          ; 14                                        ; Untyped        ;
+; NUMWORDS_A                         ; 16384                                     ; Untyped        ;
+; OUTDATA_REG_A                      ; UNREGISTERED                              ; Untyped        ;
+; ADDRESS_ACLR_A                     ; NONE                                      ; Untyped        ;
+; OUTDATA_ACLR_A                     ; NONE                                      ; Untyped        ;
+; WRCONTROL_ACLR_A                   ; NONE                                      ; Untyped        ;
+; INDATA_ACLR_A                      ; NONE                                      ; Untyped        ;
+; BYTEENA_ACLR_A                     ; NONE                                      ; Untyped        ;
+; WIDTH_B                            ; 8                                         ; Untyped        ;
+; WIDTHAD_B                          ; 14                                        ; Untyped        ;
+; NUMWORDS_B                         ; 16384                                     ; Untyped        ;
+; INDATA_REG_B                       ; CLOCK0                                    ; Untyped        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK0                                    ; Untyped        ;
+; RDCONTROL_REG_B                    ; CLOCK1                                    ; Untyped        ;
+; ADDRESS_REG_B                      ; CLOCK0                                    ; Untyped        ;
+; OUTDATA_REG_B                      ; UNREGISTERED                              ; Untyped        ;
+; BYTEENA_REG_B                      ; CLOCK1                                    ; Untyped        ;
+; INDATA_ACLR_B                      ; NONE                                      ; Untyped        ;
+; WRCONTROL_ACLR_B                   ; NONE                                      ; Untyped        ;
+; ADDRESS_ACLR_B                     ; NONE                                      ; Untyped        ;
+; OUTDATA_ACLR_B                     ; NONE                                      ; Untyped        ;
+; RDCONTROL_ACLR_B                   ; NONE                                      ; Untyped        ;
+; BYTEENA_ACLR_B                     ; NONE                                      ; Untyped        ;
+; WIDTH_BYTEENA_A                    ; 1                                         ; Untyped        ;
+; WIDTH_BYTEENA_B                    ; 1                                         ; Untyped        ;
+; RAM_BLOCK_TYPE                     ; M10K                                      ; Untyped        ;
+; BYTE_SIZE                          ; 8                                         ; Untyped        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                 ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                      ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                      ; Untyped        ;
+; INIT_FILE                          ; db/gpu.ram0_pattern_vram_cc9d1d0f.hdl.mif ; Untyped        ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                    ; Untyped        ;
+; MAXIMUM_DEPTH                      ; 0                                         ; Untyped        ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                    ; Untyped        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                    ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                    ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                    ; Untyped        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                           ; Untyped        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                           ; Untyped        ;
+; ENABLE_ECC                         ; FALSE                                     ; Untyped        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                     ; Untyped        ;
+; WIDTH_ECCSTATUS                    ; 3                                         ; Untyped        ;
+; DEVICE_FAMILY                      ; Cyclone V                                 ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_pa12                           ; Untyped        ;
++------------------------------------+-------------------------------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0 ;
++------------------------------------+-------------------------------------------------+--------------------------------------------+
+; Parameter Name                     ; Value                                           ; Type                                       ;
++------------------------------------+-------------------------------------------------+--------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                                               ; Untyped                                    ;
+; AUTO_CARRY_CHAINS                  ; ON                                              ; AUTO_CARRY                                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                                             ; IGNORE_CARRY                               ;
+; AUTO_CASCADE_CHAINS                ; ON                                              ; AUTO_CASCADE                               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                                             ; IGNORE_CASCADE                             ;
+; WIDTH_BYTEENA                      ; 1                                               ; Untyped                                    ;
+; OPERATION_MODE                     ; ROM                                             ; Untyped                                    ;
+; WIDTH_A                            ; 32                                              ; Untyped                                    ;
+; WIDTHAD_A                          ; 11                                              ; Untyped                                    ;
+; NUMWORDS_A                         ; 2048                                            ; Untyped                                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED                                    ; Untyped                                    ;
+; ADDRESS_ACLR_A                     ; NONE                                            ; Untyped                                    ;
+; OUTDATA_ACLR_A                     ; NONE                                            ; Untyped                                    ;
+; WRCONTROL_ACLR_A                   ; NONE                                            ; Untyped                                    ;
+; INDATA_ACLR_A                      ; NONE                                            ; Untyped                                    ;
+; BYTEENA_ACLR_A                     ; NONE                                            ; Untyped                                    ;
+; WIDTH_B                            ; 1                                               ; Untyped                                    ;
+; WIDTHAD_B                          ; 1                                               ; Untyped                                    ;
+; NUMWORDS_B                         ; 1                                               ; Untyped                                    ;
+; INDATA_REG_B                       ; CLOCK1                                          ; Untyped                                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                          ; Untyped                                    ;
+; RDCONTROL_REG_B                    ; CLOCK1                                          ; Untyped                                    ;
+; ADDRESS_REG_B                      ; CLOCK1                                          ; Untyped                                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED                                    ; Untyped                                    ;
+; BYTEENA_REG_B                      ; CLOCK1                                          ; Untyped                                    ;
+; INDATA_ACLR_B                      ; NONE                                            ; Untyped                                    ;
+; WRCONTROL_ACLR_B                   ; NONE                                            ; Untyped                                    ;
+; ADDRESS_ACLR_B                     ; NONE                                            ; Untyped                                    ;
+; OUTDATA_ACLR_B                     ; NONE                                            ; Untyped                                    ;
+; RDCONTROL_ACLR_B                   ; NONE                                            ; Untyped                                    ;
+; BYTEENA_ACLR_B                     ; NONE                                            ; Untyped                                    ;
+; WIDTH_BYTEENA_A                    ; 1                                               ; Untyped                                    ;
+; WIDTH_BYTEENA_B                    ; 1                                               ; Untyped                                    ;
+; RAM_BLOCK_TYPE                     ; M10K                                            ; Untyped                                    ;
+; BYTE_SIZE                          ; 8                                               ; Untyped                                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                       ; Untyped                                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                            ; Untyped                                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                            ; Untyped                                    ;
+; INIT_FILE                          ; db/gpu.ram0_instruction_memory_a86884b4.hdl.mif ; Untyped                                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A                                          ; Untyped                                    ;
+; MAXIMUM_DEPTH                      ; 0                                               ; Untyped                                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL                                          ; Untyped                                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL                                          ; Untyped                                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                          ; Untyped                                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                          ; Untyped                                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                                 ; Untyped                                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                                 ; Untyped                                    ;
+; ENABLE_ECC                         ; FALSE                                           ; Untyped                                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                           ; Untyped                                    ;
+; WIDTH_ECCSTATUS                    ; 3                                               ; Untyped                                    ;
+; DEVICE_FAMILY                      ; Cyclone V                                       ; Untyped                                    ;
+; CBXI_PARAMETER                     ; altsyncram_iuf1                                 ; Untyped                                    ;
++------------------------------------+-------------------------------------------------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                             ;
++-------------------------------------------+----------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                            ;
++-------------------------------------------+----------------------------------------------------------------------------------+
+; Number of entity instances                ; 3                                                                                ;
+; Entity Instance                           ; color_palette:u_palette|altsyncram:clut_ram_rtl_0                                ;
+;     -- OPERATION_MODE                     ; ROM                                                                              ;
+;     -- WIDTH_A                            ; 24                                                                               ;
+;     -- NUMWORDS_A                         ; 256                                                                              ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                     ;
+;     -- WIDTH_B                            ; 1                                                                                ;
+;     -- NUMWORDS_B                         ; 1                                                                                ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                           ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                     ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                             ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                        ;
+; Entity Instance                           ; pattern_vram:u_patterns|altsyncram:ram_rtl_0                                     ;
+;     -- OPERATION_MODE                     ; BIDIR_DUAL_PORT                                                                  ;
+;     -- WIDTH_A                            ; 8                                                                                ;
+;     -- NUMWORDS_A                         ; 16384                                                                            ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                     ;
+;     -- WIDTH_B                            ; 8                                                                                ;
+;     -- NUMWORDS_B                         ; 16384                                                                            ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                           ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                     ;
+;     -- RAM_BLOCK_TYPE                     ; M10K                                                                             ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                        ;
+; Entity Instance                           ; fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0 ;
+;     -- OPERATION_MODE                     ; ROM                                                                              ;
+;     -- WIDTH_A                            ; 32                                                                               ;
+;     -- NUMWORDS_A                         ; 2048                                                                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                     ;
+;     -- WIDTH_B                            ; 1                                                                                ;
+;     -- NUMWORDS_B                         ; 1                                                                                ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                           ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                     ;
+;     -- RAM_BLOCK_TYPE                     ; M10K                                                                             ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                        ;
++-------------------------------------------+----------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "pattern_vram:u_patterns" ;
++-----------+-------+----------+----------------------+
+; Port      ; Type  ; Severity ; Details              ;
++-----------+-------+----------+----------------------+
+; we_a      ; Input ; Info     ; Stuck at GND         ;
+; data_in_a ; Input ; Info     ; Stuck at GND         ;
++-----------+-------+----------+----------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fetch_control_unit:u_fetch_unit"                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; rast_busy     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; pc_out[10..8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 10539                       ;
+;     CLR               ; 28                          ;
+;     CLR SCLR          ; 10                          ;
+;     ENA               ; 9600                        ;
+;     ENA CLR           ; 856                         ;
+;     ENA CLR SCLR      ; 10                          ;
+;     ENA CLR SCLR SLD  ; 9                           ;
+;     ENA CLR SLD       ; 11                          ;
+;     SCLR              ; 8                           ;
+;     plain             ; 7                           ;
+; arriav_lcell_comb     ; 10007                       ;
+;     arith             ; 82                          ;
+;         0 data inputs ; 5                           ;
+;         1 data inputs ; 45                          ;
+;         2 data inputs ; 4                           ;
+;         3 data inputs ; 2                           ;
+;         4 data inputs ; 5                           ;
+;         5 data inputs ; 21                          ;
+;     extend            ; 34                          ;
+;         7 data inputs ; 34                          ;
+;     normal            ; 9635                        ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 4089                        ;
+;         2 data inputs ; 1272                        ;
+;         3 data inputs ; 111                         ;
+;         4 data inputs ; 165                         ;
+;         5 data inputs ; 316                         ;
+;         6 data inputs ; 3681                        ;
+;     shared            ; 256                         ;
+;         2 data inputs ; 256                         ;
+; boundary_port         ; 41                          ;
+; stratixv_ram_block    ; 72                          ;
+;                       ;                             ;
+; Max LUT depth         ; 11.50                       ;
+; Average LUT depth     ; 5.38                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:06     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+    Info: Processing started: Wed Oct 14 09:32:06 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gpu -c gpu
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file gpu_de1_soc_top.v
+    Info (12023): Found entity 1: gpu_de1_soc_top File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 1
+Warning (12019): Can't analyze file -- file board_input_controller.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file cmd_decoder.v
+    Info (12023): Found entity 1: cmd_decoder File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file color_palette.v
+    Info (12023): Found entity 1: color_palette File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/color_palette.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file compositor.v
+    Info (12023): Found entity 1: compositor File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/compositor.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file polygon_buffer.v
+    Info (12023): Found entity 1: polygon_buffer File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/polygon_buffer.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file polygon_rasterizer.v
+    Info (12023): Found entity 1: polygon_rasterizer File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/polygon_rasterizer.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file bg_engine.v
+    Info (12023): Found entity 1: bg_engine File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/bg_engine.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file tilemap_ram.v
+    Info (12023): Found entity 1: tilemap_ram File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/tilemap_ram.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pattern_vram.v
+    Info (12023): Found entity 1: pattern_vram File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/pattern_vram.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga_sync.v
+    Info (12023): Found entity 1: vga_sync File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/vga_sync.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file sprite_engine.v
+    Info (12023): Found entity 1: sprite_engine File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/sprite_engine.v Line: 1
+Info (12127): Elaborating entity "gpu_de1_soc_top" for the top level hierarchy
+Info (12128): Elaborating entity "vga_sync" for hierarchy "vga_sync:u_vga_sync" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 41
+Warning (12125): Using design file fetch_control_unit.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: fetch_control_unit File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/fetch_control_unit.v Line: 1
+Info (12128): Elaborating entity "fetch_control_unit" for hierarchy "fetch_control_unit:u_fetch_unit" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 61
+Warning (12125): Using design file instruction_memory.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: instruction_memory File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/instruction_memory.v Line: 1
+Info (12128): Elaborating entity "instruction_memory" for hierarchy "fetch_control_unit:u_fetch_unit|instruction_memory:u_rom" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/fetch_control_unit.v Line: 28
+Warning (10850): Verilog HDL warning at instruction_memory.v(15): number of words (1802) in memory file does not match the number of elements in the address range [0:2047] File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/instruction_memory.v Line: 15
+Warning (10030): Net "memory.data_a" at instruction_memory.v(12) has no driver or initial value, using a default initial value '0' File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/instruction_memory.v Line: 12
+Warning (10030): Net "memory.waddr_a" at instruction_memory.v(12) has no driver or initial value, using a default initial value '0' File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/instruction_memory.v Line: 12
+Warning (10030): Net "memory.we_a" at instruction_memory.v(12) has no driver or initial value, using a default initial value '0' File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/instruction_memory.v Line: 12
+Info (12128): Elaborating entity "cmd_decoder" for hierarchy "cmd_decoder:u_cmd_decoder" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 95
+Warning (10240): Verilog HDL Always Construct warning at cmd_decoder.v(28): inferring latch(es) for variable "pal_addr", which holds its previous value in one or more paths through the always construct File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Warning (10240): Verilog HDL Always Construct warning at cmd_decoder.v(28): inferring latch(es) for variable "pal_data", which holds its previous value in one or more paths through the always construct File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[0]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[1]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[2]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[3]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[4]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[5]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[6]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[7]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[8]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[9]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[10]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[11]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[12]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[13]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[14]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[15]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[16]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[17]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[18]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[19]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[20]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[21]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[22]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_data[23]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[0]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[1]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[2]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[3]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[4]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[5]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[6]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (10041): Inferred latch for "pal_addr[7]" at cmd_decoder.v(28) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/cmd_decoder.v Line: 28
+Info (12128): Elaborating entity "bg_engine" for hierarchy "bg_engine:u_bg_engine" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 112
+Warning (10230): Verilog HDL assignment warning at bg_engine.v(24): truncated value with size 10 to match size of target (9) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/bg_engine.v Line: 24
+Warning (10230): Verilog HDL assignment warning at bg_engine.v(25): truncated value with size 9 to match size of target (8) File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/bg_engine.v Line: 25
+Info (12128): Elaborating entity "tilemap_ram" for hierarchy "bg_engine:u_bg_engine|tilemap_ram:u_map_buffer" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/bg_engine.v Line: 55
+Info (12128): Elaborating entity "sprite_engine" for hierarchy "sprite_engine:u_sprite_engine" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 130
+Warning (10240): Verilog HDL Always Construct warning at sprite_engine.v(24): inferring latch(es) for variable "k", which holds its previous value in one or more paths through the always construct File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/sprite_engine.v Line: 24
+Info (12128): Elaborating entity "pattern_vram" for hierarchy "pattern_vram:u_patterns" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 141
+Info (12128): Elaborating entity "compositor" for hierarchy "compositor:u_compositor" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 150
+Info (12128): Elaborating entity "color_palette" for hierarchy "color_palette:u_palette" File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 162
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276007): RAM logic "bg_engine:u_bg_engine|tilemap_ram:u_map_buffer|map_ram" is uninferred due to asynchronous read logic File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/tilemap_ram.v Line: 14
+Critical Warning (127005): Memory depth (2048) in the design file differs from memory depth (1200) in the Memory Initialization File "/home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/gpu.ram0_tilemap_ram_aefd7c43.hdl.mif" -- setting initial value for remaining addresses to 0
+Info (19000): Inferred 3 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "color_palette:u_palette|clut_ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 24
+        Info (286033): Parameter WIDTHAD_A set to 8
+        Info (286033): Parameter NUMWORDS_A set to 256
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to db/gpu.ram0_color_palette_5080005f.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "pattern_vram:u_patterns|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to BIDIR_DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_A set to 14
+        Info (286033): Parameter WIDTHAD_B set to 14
+        Info (286033): Parameter NUMWORDS_A set to 16384
+        Info (286033): Parameter NUMWORDS_B set to 16384
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_REG_B set to CLOCK0
+        Info (286033): Parameter WRCONTROL_WRADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter RAM_BLOCK_TYPE set to M10K
+        Info (286033): Parameter INIT_FILE set to db/gpu.ram0_pattern_vram_cc9d1d0f.hdl.mif
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|memory_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to ROM
+        Info (286033): Parameter WIDTH_A set to 32
+        Info (286033): Parameter WIDTHAD_A set to 11
+        Info (286033): Parameter NUMWORDS_A set to 2048
+        Info (286033): Parameter OUTDATA_REG_A set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_A set to NONE
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter RAM_BLOCK_TYPE set to M10K
+        Info (286033): Parameter INIT_FILE set to db/gpu.ram0_instruction_memory_a86884b4.hdl.mif
+Info (12130): Elaborated megafunction instantiation "color_palette:u_palette|altsyncram:clut_ram_rtl_0"
+Info (12133): Instantiated megafunction "color_palette:u_palette|altsyncram:clut_ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "24"
+    Info (12134): Parameter "WIDTHAD_A" = "8"
+    Info (12134): Parameter "NUMWORDS_A" = "256"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "db/gpu.ram0_color_palette_5080005f.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_5ad1.tdf
+    Info (12023): Found entity 1: altsyncram_5ad1 File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/altsyncram_5ad1.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "pattern_vram:u_patterns|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "pattern_vram:u_patterns|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "BIDIR_DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "14"
+    Info (12134): Parameter "WIDTHAD_B" = "14"
+    Info (12134): Parameter "NUMWORDS_A" = "16384"
+    Info (12134): Parameter "NUMWORDS_B" = "16384"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_REG_B" = "CLOCK0"
+    Info (12134): Parameter "WRCONTROL_WRADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "RAM_BLOCK_TYPE" = "M10K"
+    Info (12134): Parameter "INIT_FILE" = "db/gpu.ram0_pattern_vram_cc9d1d0f.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_pa12.tdf
+    Info (12023): Found entity 1: altsyncram_pa12 File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/altsyncram_pa12.tdf Line: 34
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_5la.tdf
+    Info (12023): Found entity 1: decode_5la File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/decode_5la.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_u0a.tdf
+    Info (12023): Found entity 1: decode_u0a File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/decode_u0a.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_lfb.tdf
+    Info (12023): Found entity 1: mux_lfb File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/mux_lfb.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0"
+Info (12133): Instantiated megafunction "fetch_control_unit:u_fetch_unit|instruction_memory:u_rom|altsyncram:memory_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "ROM"
+    Info (12134): Parameter "WIDTH_A" = "32"
+    Info (12134): Parameter "WIDTHAD_A" = "11"
+    Info (12134): Parameter "NUMWORDS_A" = "2048"
+    Info (12134): Parameter "OUTDATA_REG_A" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "RAM_BLOCK_TYPE" = "M10K"
+    Info (12134): Parameter "INIT_FILE" = "db/gpu.ram0_instruction_memory_a86884b4.hdl.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_iuf1.tdf
+    Info (12023): Found entity 1: altsyncram_iuf1 File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/db/altsyncram_iuf1.tdf Line: 28
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 4
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: /home/aluno/Downloads/PBL1SD- com erro nas sprites/PBL1SD-master/gpu_de1_soc_top.v Line: 12
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 16494 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 39 output pins
+    Info (21061): Implemented 16381 logic cells
+    Info (21064): Implemented 72 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
+    Info: Peak virtual memory: 675 megabytes
+    Info: Processing ended: Wed Oct 14 09:32:17 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:19
+
+
