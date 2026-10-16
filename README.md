@@ -1,4 +1,4 @@
-# Coprocessador Gráfico 2D utilizando a DE1-SoC - Desenvolvimento e projeção gráfica do Jogo Flappy Bird em Verilog.
+# Coprocessador com arquitetura própria utilizando a DE1-SoC - Desenvolvimento e projeção gráfica do Jogo Flappy Bird em Verilog.
   <h3>
     Lucca Coutinho, Mailson Alves, Ramon Santos
   
@@ -42,14 +42,17 @@
 
 O projeto consiste na evolução de blocos gráficos individuais em Verilog HDL para um **coprocessador gráfico 2D (GPU) programável e 100% autônomo** na FPGA Cyclone V (kit DE1-SoC). Em vez de depender de estímulos manuais externos via chaves físicas, o circuito deve operar sob a organização clássica de um processador dedicado: buscar instruções de 32 bits em uma memória interna através de um ciclo de **Busca Ativa** (*Fetch-Decode-Execute*)[cite: 3, 12, 13], controlar o fluxo de execução via *handshake* e sincronismo vertical, e renderizar múltiplos planos visuais em tempo real no padrão VGA (640×480 @ 60 Hz).
 
----
+
 
 ## 2. Resumo da Solução Proposta
 
-A solução desenvolvida implementa um coprocessador gráfico autônomo capaz de executar uma aplicação visual inspirada no jogo *Flappy Bird* diretamente a partir de uma memória de programa interna (`program.hex`). A arquitetura integra uma **Unidade de Busca e Controle** (`fetch_control_unit.v`) equipada com um Contador de Programa (*Program Counter* - PC) de 11 bits e um Registrador de Instrução (IR), que lê continuamente as palavras da **Memória de Instruções** (`instruction_memory.v`) alocada em blocos M10K. As instruções decodificadas atualizam dinamicamente o deslocamento (*scrolling*) do plano de fundo em *Tilemap* e as coordenadas dos *sprites* quadro a quadro, sincronizando as transições com o intervalo de apagamento vertical (`WAIT_VBLANK`) e mantendo a animação em laço contínuo (`JUMP`), restando apenas o botão físico `KEY[0]` para *Reset* global do sistema[.
----
+
+A solução desenvolvida implementa um coprocessador gráfico autônomo capaz de executar uma aplicação visual inspirada no jogo *Flappy Bird* diretamente a partir de uma memória de programa interna (`program.hex`). A arquitetura integra uma **Unidade de Busca e Controle** (`fetch_control_unit.v`) equipada com um Contador de Programa (*Program Counter* - PC) de 11 bits e um Registrador de Instrução (IR), que lê continuamente as palavras da **Memória de Instruções** (`instruction_memory.v`) alocada em blocos M10K. As instruções decodificadas atualizam dinamicamente o deslocamento (*scrolling*) do plano de fundo em *Tilemap* e as coordenadas dos *sprites* quadro a quadro, sincronizando as transições com o intervalo de apagamento vertical (`WAIT_VBLANK`) e mantendo a animação em laço contínuo (`JUMP`), restando apenas o botão físico `KEY[0]` para *Reset* global do sistema.
+
+
 
 ### 3.1 Requisitos Funcionais
+---
 * **RF01 - Busca Ativa e Controle de Fluxo:** Buscar instruções autonomamente em memória interna (`.hex`) utilizando um *Program Counter* (PC) de 11 bits, Registrador de Instrução (IR) e suporte a desvios incondicionais (`JUMP`).
 * **RF02 - Protocolo de Handshake e Sincronismo de Quadro:** Pausar o avanço do PC durante operações de múltiplos ciclos da ULA gráfica (`rast_busy`) e aguardar o intervalo de apagamento vertical (`WAIT_VBLANK`) para evitar *screen tearing*.
 * **RF03 - Decodificação de Instruções de 32 bits (ISA):** Decodificar e rotear palavras de comando em ciclo único baseadas em *Opcode* de 4 bits, *Sub-Op/ID* e *Payloads* de dados.
